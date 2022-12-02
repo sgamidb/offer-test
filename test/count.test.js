@@ -1,3 +1,4 @@
+process.argv = ['', '', 'filter=']
 const {count} = require('../app.js');
 
 describe('count test', () => {

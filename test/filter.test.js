@@ -1,3 +1,4 @@
+process.argv = ['', '', 'filter=ry']
 const {filter} = require('../app');
 
 describe('filter test', () => {
