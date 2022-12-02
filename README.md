@@ -7,11 +7,11 @@ If you find some issues or enhancements, feel free to fork this repository and c
 
 ## Requirements
 
-- All your changes should be in a new branch. You have to open a new pull request to push your work in this repository.
-- No library/modules should be added.
-- **Code readability**, structure and consistency
-- **Tests**, and how they are written
-- Usage of comments
+-   All your changes should be in a new branch. You have to open a new pull request to push your work in this repository.
+-   No library/modules should be added.
+-   **Code readability**, structure and consistency
+-   **Tests**, and how they are written
+-   Usage of comments
 
 ## User story #1 filter
 
@@ -33,26 +33,26 @@ $ node app.js --filter=ry
 # Only animals containing `ry` are displayed.
 [
   {
-    "name": "Uzuzozne",
-    "people": [
+    'name': 'Uzuzozne',
+    'people': [
       {
-        "name": "Lillie Abbott",
-        "animals": [
+        'name': 'Lillie Abbott',
+        'animals': [
           {
-            "name": "John Dory"
+            'name': 'John Dory'
           }
         ]
       }
     ]
   },
   {
-    "name": "Satanwi",
-    "people": [
+    'name': 'Satanwi',
+    'people': [
       {
-        "name": "Anthony Bruno",
-        "animals": [
+        'name': 'Anthony Bruno',
+        'animals': [
           {
-            "name": "Oryx"
+            'name': 'Oryx'
           }
         ]
       }
@@ -66,13 +66,13 @@ $ node app.js --filter=uz
 # Only animals containing `Uz` are displayed.
 [
   {
-    "name": "Dillauti",
-    "people": [
+    'name': 'Dillauti',
+    'people': [
       {
-        "name": "Philip Murray",
-        "animals": [
+        'name': 'Philip Murray',
+        'animals': [
           {
-            "name": "Buzzard"
+            'name': 'Buzzard'
           }
         ]
       }
@@ -106,26 +106,26 @@ node app.js --filter=ry --count
 # This two commands should produce the same result
 [
   {
-    "name": "Uzuzozne [1]",
-    "people": [
+    'name': 'Uzuzozne [1]',
+    'people': [
       {
-        "name": "Lillie Abbott [1]",
-        "animals": [
+        'name': 'Lillie Abbott [1]',
+        'animals': [
           {
-            "name": "John Dory"
+            'name': 'John Dory'
           }
         ]
       }
     ]
   },
   {
-    "name": "Satanwi [1]",
-    "people": [
+    'name': 'Satanwi [1]',
+    'people': [
       {
-        "name": "Anthony Bruno [1]",
-        "animals": [
+        'name': 'Anthony Bruno [1]',
+        'animals': [
           {
-            "name": "Oryx"
+            'name': 'Oryx'
           }
         ]
       }
