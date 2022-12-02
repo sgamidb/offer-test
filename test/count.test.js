@@ -1,6 +1,5 @@
-process.argv = ['', '', 'nothing', 'nothing']
-const {addNumberOfSubCategoriesInName} = require('../app.js');
 const {dataCounted, dataForTest} = require("./data-for-test");
+const {addNumberOfSubCategoriesToParentName} = require("../src/add-count-sub-categories-to-parent");
 
 describe('count test', () => {
 
@@ -33,7 +32,7 @@ describe('count test', () => {
                 ]
             }
         ];
-        const result = addNumberOfSubCategoriesInName(data);
+        const result = addNumberOfSubCategoriesToParentName(data);
         expect(result[0].name).toEqual('Uzuzozne [1]');
     });
 
@@ -66,12 +65,12 @@ describe('count test', () => {
                 ]
             }
         ];
-        const result = addNumberOfSubCategoriesInName(data);
+        const result = addNumberOfSubCategoriesToParentName(data);
         expect(result[0].people[0].name).toEqual('Lillie Abbott [1]');
     });
 
     it('should add number of peoples in name of country and number of animals in name of people ', () => {
-        const result = addNumberOfSubCategoriesInName(dataForTest);
+        const result = addNumberOfSubCategoriesToParentName(dataForTest);
         expect(result).toEqual(dataCounted);
     })
 });

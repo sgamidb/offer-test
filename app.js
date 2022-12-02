@@ -1,25 +1,10 @@
 const {filterData} = require("./src/filter-data");
-const data = JSON.parse(JSON.stringify(require('./data')));
+const {addNumberOfSubCategoriesToParentName} = require("./src/add-count-sub-categories-to-parent");
+const data = JSON.parse(JSON.stringify(require('./data/data')));
 
 'use strict'
 
 const args = process.argv
-
-const addNumberOfSubCategoriesInName = (data) => {
-    const newList = data.map((country) => {
-        country.people.map((person) => {
-            person.name = `${person.name} [${person.animals.length}]`
-            return person
-        })
-        country.name = `${country.name} [${country.people.length}]`
-        return country
-    })
-    console.log(JSON.stringify(newList))
-    return newList
-}
-
-// USAGE: node app.js --filter=[PATTERN] OR node app.js filter=[PATTERN]
-// USAGE: node app.js --count OR node app.js count
 
 try {
     const cmd = args[2].split("=");
@@ -32,7 +17,7 @@ try {
         })
     }
     if (cmd2[0] === '--count' || cmd2[0] === 'count') {
-        const dataWithcount = addNumberOfSubCategoriesInName(dataFiltred);
+        const dataWithcount = addNumberOfSubCategoriesToParentName(dataFiltred);
         console.dir(!dataWithcount.length ? 'Nothing found' : dataWithcount, {
             depth: null
         })
@@ -41,9 +26,4 @@ try {
     }
 } catch (err) {
     throw err
-}
-
-
-module.exports = {
-    addNumberOfSubCategoriesInName
 }
