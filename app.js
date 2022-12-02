@@ -1,4 +1,4 @@
-const data = require('./data');
+const data = JSON.parse(JSON.stringify(require('./data')));
 
 'use strict'
 
@@ -17,7 +17,7 @@ const removeNonMatching = (searchedStr, person) => {
     }).filter(e => e)
 }
 
-const filter = (searchedStr) => {
+const filter = (searchedStr, data) => {
     const newList = data.filter(q => {
         let newCountry = q
         newCountry.people = q.people.filter(p => {
@@ -56,7 +56,7 @@ const count = () => {
 try {
     const cmd = args[2].split("=");
     if (cmd[0] === '--filter' || cmd[0] === 'filter') {
-        filter(cmd[1])
+        filter(cmd[1], data)
     } else if (cmd[0] === '--count' || cmd[0] === 'count') {
         count()
     } else {
