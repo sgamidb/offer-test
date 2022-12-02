@@ -5,7 +5,7 @@ const data = JSON.parse(JSON.stringify(require('./data')));
 
 const args = process.argv
 
-const count = () => {
+const addNumberOfSubCategoriesInName = (data) => {
     const newList = data.map((country) => {
         country.people.map((person) => {
             person.name = `${person.name} [${person.animals.length}]`
@@ -15,7 +15,7 @@ const count = () => {
         return country
     })
     console.log(JSON.stringify(newList))
-    return JSON.stringify(newList)
+    return newList
 }
 
 // USAGE: node app.js --filter=[PATTERN] OR node app.js filter=[PATTERN]
@@ -23,13 +23,19 @@ const count = () => {
 
 try {
     const cmd = args[2].split("=");
+    const cmd2 = args[3].split("=");
+    let dataFiltred;
     if (cmd[0] === '--filter' || cmd[0] === 'filter') {
-        const dataFiltred = filterData(cmd[1], data);
+        dataFiltred = filterData(cmd[1], data);
         console.dir(!dataFiltred.length ? 'Nothing found' : dataFiltred, {
             depth: null
         })
-    } else if (cmd[0] === '--count' || cmd[0] === 'count') {
-        count()
+    }
+    if (cmd2[0] === '--count' || cmd2[0] === 'count') {
+        const dataWithcount = addNumberOfSubCategoriesInName(dataFiltred);
+        console.dir(!dataWithcount.length ? 'Nothing found' : dataWithcount, {
+            depth: null
+        })
     } else {
         console.log('Wrong arguments')
     }
@@ -39,5 +45,5 @@ try {
 
 
 module.exports = {
-    count
+    addNumberOfSubCategoriesInName
 }

@@ -1,4 +1,4 @@
-const dataForTest = require('./data-for-test');
+const {dataForTest} = require('./data-for-test');
 const {filterData} = require("../src/filter-data");
 
 describe('filter test', () => {
