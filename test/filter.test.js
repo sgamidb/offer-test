@@ -1,25 +1,54 @@
-process.argv = ['', '', 'nothing']
-const {filter} = require('../app');
-const data = require('../data');
+const dataForTest = require('./data-for-test');
+const {filterData} = require("../src/filter-data");
 
 describe('filter test', () => {
-    let dataForTest;
+    let dataTest;
 
     beforeEach(() => {
-        dataForTest =  JSON.parse(JSON.stringify(data));
+        dataTest =  JSON.parse(JSON.stringify(dataForTest));
     })
+
     it('should show the animals matching with the ry string pattern', () => {
-        const result = filter('ry', dataForTest);
-        expect(result).toEqual('[{"name":"Uzuzozne","people":[{"name":"Lillie Abbott","animals":[{"name":"John Dory"}]}]},{"name":"Satanwi","people":[{"name":"Anthony Bruno","animals":[{"name":"Oryx"}]}]}]');
+        const actualResult = filterData('ry', dataTest);
+        const expectedResult = [
+            {
+                "name": "Uzuzozne",
+                "people": [
+                    {
+                        "name": "Lillie Abbott",
+                        "animals": [
+                            {
+                                "name": "John Dory"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Satanwi",
+                "people": [
+                    {
+                        "name": "Anthony Bruno",
+                        "animals": [
+                            {
+                                "name": "Oryx"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+        expect(actualResult).toEqual(expectedResult);
     });
 
     it('should show all items when filter is empty', () => {
-        const result = filter('', dataForTest);
-        expect(result).toEqual(JSON.stringify(dataForTest));
+        const actualResult = filterData('', dataTest);
+        const expectedResult = dataTest;
+        expect(actualResult).toEqual(expectedResult);
     });
 
     it('should show nothing', () => {
-        const result = filter('nooothing', dataForTest);
-        expect(result).toEqual('Nothing found');
+        const result = filterData('nooothing', dataTest);
+        expect(result).toEqual([]);
     });
 });
