@@ -1,4 +1,6 @@
-const {filter} = require('../app');
+const {
+    filter
+} = require('../app');
 
 describe('filter test', () => {
     it('should show the animals matching with the ry string pattern', () => {

@@ -1,8 +1,8 @@
 const data = require('./data');
 
 'use strict'
-
-const args = process.argv
+// pour enlever le chemin du Node + chemin de app.js 
+const args = process.argv.slice(2);
 
 function isEmpty(arr) {
     return (Array.isArray(arr) && arr.length)
@@ -33,8 +33,9 @@ const filter = (searchedStr) => {
     });
 
     // prints out the filtered list if there is any match
-    console.log((!isEmpty(newList)) ? 'Nothing found' : JSON.stringify(newList))
-    return (!isEmpty(newList)) ? 'Nothing found' : JSON.stringify(newList)
+    // enlever le null + le 3 sinon ça fait échoué les test
+    console.log((!isEmpty(newList)) ? 'Nothing found' : JSON.stringify(newList, null, 3))
+    return (!isEmpty(newList)) ? 'Nothing found' : JSON.stringify(newList, null, 3)
 }
 
 const count = () => {
@@ -46,27 +47,49 @@ const count = () => {
         country.name = `${country.name} [${country.people.length}]`
         return country
     })
-    console.log(JSON.stringify(newList))
-    return JSON.stringify(newList)
+    // enlever le null + le 3 sinon ça fait échoué les test
+    console.log(JSON.stringify(newList, null, 3))
+    return JSON.stringify(newList, null, 3)
 }
 
 // USAGE: node app.js --filter=[PATTERN] OR node app.js filter=[PATTERN]
 // USAGE: node app.js --count OR node app.js count
 
 try {
-    const cmd = args[2].split("=");
+    const cmd = args[0].split("=");
+    console.log(cmd);
+    console.log(args);
     if (cmd[0] === '--filter' || cmd[0] === 'filter') {
-        filter(cmd[1])
+        if (args.includes('--count') || args.includes('count')) {
+            count(filter(cmd[1]));
+            console.log(args);
+        } else {
+            filter(cmd[1]);
+            console.log(args)
+        }
     } else if (cmd[0] === '--count' || cmd[0] === 'count') {
-        count()
+        // if (args.includes('--filter') || args.includes('filter')) {
+        //     const cmd = args[2].split("=")
+        //     count(filter(cmd[3]));
+        //     console.log(cmd);
+
+        // } else {
+        count();
+        // console.log(cmd)
+        // console.log("///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////")
+        // console.log(cmd[1]);
+        // console.log(args);
+        // }
     } else {
-        console.log('Wrong arguments')
+        console.log('Wrong arguments');
     }
-} catch(err) {
-    throw err
+} catch (err) {
+    throw err;
 }
 
 
+
 module.exports = {
-    count, filter
+    count,
+    filter
 }

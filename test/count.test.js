@@ -1,4 +1,6 @@
-const {count} = require('../app.js');
+const {
+    count
+} = require('../app.js');
 
 describe('count test', () => {
     it('should show 5 as the number of people', () => {
